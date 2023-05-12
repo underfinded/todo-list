@@ -5,7 +5,14 @@ const input = document.querySelector('.task__input');
 let del;
 
 
-let time = 'test';
+let time;
+
+function clock() {
+    var date = new Date(),
+        hours = (date.getHours() < 10) ? '0' + date.getHours() : date.getHours(),
+        minutes = (date.getMinutes() < 10) ? '0' + date.getMinutes() : date.getMinutes();
+    time = `${hours} : ${minutes}`;
+}
 
 if (localStorage.length >= 1) {
     TaskList.innerHTML = localStorage.getItem('html');
@@ -30,6 +37,7 @@ document.addEventListener('keydown', (event) => {
 let element;
 function addElement() {
     if (input.value != '') {
+        clock();
         element =
             `<li class="task__item">
                 <label>
